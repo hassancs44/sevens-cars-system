@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <div class="page-header">
+    <img src="{{ url_for('static', filename='img/7s.jpg') }}" class="page-logo" alt="SEVENS">
+    <h1>🏢 مكتب التأجير — عرض آخر تغييرات الزيت</h1>
+    <p class="page-sub">عرض مباشر للبيانات القادمة من الورشة</p>
+  </div>
+
+  <div class="toolbar">
+    <input class="glass" type="text" id="searchInputR" placeholder="🔍 ابحث باللوحة...">
+    <select class="glass" id="filterSelectR">
+      <option value="all">كل السجلات</option>
+      <option value="10">آخر 10</option>
+      <option value="20">آخر 20</option>
+      <option value="30">آخر 30</option>
+      <option value="40">آخر 40</option>
+      <option value="50">آخر 50</option>
+    </select>
+    <button class="btn outline" id="refreshR">🔄 تحديث</button>
+  </div>
+
+  <div id="tableWrapR" class="table-wrap"></div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  initPage({
+    scope: "rental",
+    tableWrapId: "tableWrapR",
+    searchId: "searchInputR",
+    filterId: "filterSelectR",
+    refreshId: "refreshR"
+  });
+</script>
+{% endblock %}
