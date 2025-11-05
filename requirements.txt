@@ -1,5 +1,4 @@
 Flask==3.0.3
-pandas==2.2.2
+pandas==2.1.4
 openpyxl
 gunicorn
---only-binary=:all:
