@@ -1,7 +1,3 @@
-# ============================================================
-# SEVENS Cars System - Final Render Blueprint (Python 3.11)
-# ============================================================
-
 version: "1"
 
 services:
@@ -11,21 +7,15 @@ services:
     plan: free
     region: oregon
     buildCommand: |
-      apt-get update
+      apt-get update -y
       apt-get install -y python3.11 python3.11-venv python3.11-distutils
-      python3.11 -m venv venv
-      . venv/bin/activate
-      pip install --upgrade pip
-      pip install -r 7scars/requirements.txt
-    startCommand: |
-      . venv/bin/activate
+      ln -sf /usr/bin/python3.11 /usr/bin/python3
       cd 7scars
+      python3 -m venv venv
+      . venv/bin/activate
+      pip install --upgrade pip setuptools wheel
+      pip install -r requirements.txt
+    startCommand: |
+      cd 7scars
+      . venv/bin/activate
       gunicorn app:app
-    autoDeploy: true
-    envVars:
-      - key: FLASK_ENV
-        value: production
-      - key: PYTHONUNBUFFERED
-        value: "1"
-      - key: TZ
-        value: Asia/Riyadh
