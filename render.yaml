@@ -10,12 +10,11 @@ services:
       apt-get update -y
       apt-get install -y python3.11 python3.11-venv python3.11-distutils
       ln -sf /usr/bin/python3.11 /usr/bin/python3
-      cd 7scars
       python3 -m venv venv
       . venv/bin/activate
       pip install --upgrade pip setuptools wheel
-      pip install -r requirements.txt
+      pip install -r 7scars/requirements.txt
     startCommand: |
-      cd 7scars
       . venv/bin/activate
+      cd 7scars
       gunicorn app:app
