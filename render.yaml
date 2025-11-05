@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: sevens-cars-system
+    env: python
+    buildCommand: |
+      apt-get update
+      apt-get install -y python3.11 python3.11-venv python3.11-distutils
+      python3.11 -m venv venv
+      . venv/bin/activate
+      pip install --upgrade pip
+      pip install -r 7scars/requirements.txt
+    startCommand: |
+      . venv/bin/activate
+      cd 7scars && gunicorn app:app
